@@ -10,7 +10,7 @@ and export variables for zsh prompt:
 ## Configuration
 You can override defaults in `.zshrc`:
 ```bash
-# Exclude commands
+# Exclude commands, default is: ()
 ZSH_CMD_TIME_EXCLUDE=(vim watch less more top my)
 # Output time, default is true.
 ZSH_CMD_TIME_PRINT=true

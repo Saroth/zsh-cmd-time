@@ -55,7 +55,11 @@ _zsh_cmd_time_precmd() {
     if [ -n "$str" ]; then
       len=2
     fi
-    str+=`printf "%0*d.%s" $len $used_s $used_us`
+    local float_len=`expr 6 - $#used_us`
+    if [ $float_len -lt 0 ]; then
+      float_len=0
+    fi
+    str+=`printf "%0*d.%s%.*s" $len $used_s $used_us $float_len '00000000'`
     ZSH_CMD_TIME_DECORATE=`print -P "%F{$ZSH_CMD_TIME_COLOR}$str%f"`
   fi
   # echo "<<< $? end at $end_at, time used: $ZSH_CMD_TIME_SECONDS, $ZSH_CMD_TIME_DECORATE($ZSH_CMD_TIME_COLOR)"
